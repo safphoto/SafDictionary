@@ -7,12 +7,6 @@
     <script type="application/x-javascript">
         var initialViewer = true;
 
-        var Logger = {};
-        Logger.LogToConsole = function (message) {
-            if (window.console && window.console.log)
-                window.console.log(message);
-        };
-
         function pageLoaded() {
             var viewer = document.getElementById("viewer");
             viewer.innerHTML = "";
@@ -27,7 +21,15 @@
             WriteToViewer("Dictionary contents", d.toString());
             WriteToViewer("Dictionary count", d.count());
 
-            var sortedKeys = d.sortedKeys(true);
+            var d2 = new SAF.Dictionary();
+
+            d2.add("Steve", 51);
+            d2.add("Willie", 57);
+
+            d.merge(d2);
+            WriteToViewer("Dictionary contents after merging two dictionaries", d.toString());
+
+            var sortedKeys = d.sortedKeys(true); // pass true will cause a reversed sort order
 
             WriteToViewer("Sorted keys", sortedKeys);
 
@@ -42,11 +44,8 @@
 
             d.clear();
 
-            WriteToViewer("Dictionary contents", d.toString());
+            WriteToViewer("Dictionary contents after clearing", d.toString());
             WriteToViewer("Dictionary count", d.count());
-
-
-
         }
 
         function WriteToViewer(message, value) {

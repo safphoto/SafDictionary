@@ -23,6 +23,15 @@ SAF.Dictionary = function () {
         return this;
     };
 
+    this.merge = function (dictionary) {
+        var keys = dictionary.keys();
+
+        for (var i = 0; i < keys.length; i++) {
+            var value = dictionary.find(keys[i]);
+            this.add(keys[i], value);
+        }
+    }
+
     this.remove = function (key) {
         if (typeof (store.hasOwnProperty(key))) {
             length--;
@@ -33,7 +42,7 @@ SAF.Dictionary = function () {
     };
 
     this.find = function (key) {
-        return store[key];
+        return (store.hasOwnProperty(key)) ? store[key] : null;
     };
 
     this.contains = function (key) {
@@ -53,6 +62,16 @@ SAF.Dictionary = function () {
         return length;
     };
 
+    this.keys = function () {
+        var array = [];
+
+        for (var key in store) {
+            array.push(key);
+        }
+
+        return array;
+    };
+
     this.sortedKeys = function (reversed) {
         var array = [];
 
@@ -62,8 +81,8 @@ SAF.Dictionary = function () {
 
         array.sort();
 
-        if(typeof reversed === "boolean"){
-            if(reversed) {
+        if (typeof reversed === "boolean") {
+            if (reversed) {
                 array.reverse();
             }
         }
@@ -73,5 +92,5 @@ SAF.Dictionary = function () {
 
     this.toString = function () {
         return JSON.stringify(store);
-    }
+    };
 };
