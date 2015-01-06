@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>SAF.Dictionary example</title>
+    <script type="text/javascript" src="./SafDictionary.js"></script>
+    <script type="application/x-javascript">
+        var initialViewer = true;
+
+        var Logger = {};
+        Logger.LogToConsole = function (message) {
+            if (window.console && window.console.log)
+                window.console.log(message);
+        };
+
+        function pageLoaded() {
+            var viewer = document.getElementById("viewer");
+            viewer.innerHTML = "";
+
+            var d = new SAF.Dictionary();
+
+            d.add("Scott", 49);
+            d.add("Corey", 45);
+            d.add("Cindy", 43);
+            d.add("Shawn", 53);
+
+            WriteToViewer("Dictionary contents", d.toString());
+            WriteToViewer("Dictionary count", d.count());
+
+            var sortedKeys = d.sortedKeys(true);
+
+            WriteToViewer("Sorted keys", sortedKeys);
+
+            WriteToViewer("Dictionary contains 'Cindy' key", d.contains("Cindy"));
+
+            d.remove("Corey");
+
+            WriteToViewer("Dictionary contents", d.toString());
+            WriteToViewer("Dictionary count", d.count());
+
+            WriteToViewer("Value for 'Scott'", d.find("Scott"));
+
+            d.clear();
+
+            WriteToViewer("Dictionary contents", d.toString());
+            WriteToViewer("Dictionary count", d.count());
+
+
+
+        }
+
+        function WriteToViewer(message, value) {
+            if (!initialViewer) {
+                var newLine = document.createElement("br");
+                viewer.appendChild(newLine);
+                var newMessage = document.createTextNode(message + ': ' + value);
+                viewer.appendChild(newMessage);
+            }
+            else {
+                viewer.innerHTML = message + ': ' + value;
+                initialViewer = false;
+            }
+        }
+    </script>
+</head>
+<body onload="pageLoaded()">
+<div id="viewer">
+    Testing . . .
+</div>
+</body>
+</html>
