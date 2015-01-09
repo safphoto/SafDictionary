@@ -13,7 +13,7 @@ SAF.Dictionary = function () {
 
     this.add = function (key, value) {
         if (typeof (value) != 'undefined') {
-            if (typeof (!this.contains(key))) {
+            if (typeof (!store.hasOwnProperty(key))) {
                 length++;
                 store[key] = value;
             }
@@ -32,7 +32,7 @@ SAF.Dictionary = function () {
     };
 
     this.remove = function (key) {
-        if (typeof (this.contains(key))) {
+        if (typeof (store.hasOwnProperty(key))) {
             length--;
             delete store[key];
         }
@@ -41,7 +41,7 @@ SAF.Dictionary = function () {
     };
 
     this.find = function (key) {
-        return (this.contains(key)) ? store[key] : null;
+        return (store.hasOwnProperty(key)) ? store[key] : null;
     };
 
     this.contains = function (key) {
@@ -50,7 +50,7 @@ SAF.Dictionary = function () {
 
     this.clear = function () {
         for (var key in store) {
-            if (this.contains(key)) {
+            if (store.hasOwnProperty(key)) {
                 length--;
                 delete store[key];
             }
