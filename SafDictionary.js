@@ -5,16 +5,15 @@ SAF.Dictionary = function () {
     var store = {};
     var length = 0;
 
-    for (var i = 0; i < arguments.length; i += 2) {
-        if (typeof (arguments[i + 1]) != 'undefined') {
-            store[arguments[i]] = arguments[i + 1];
-            length++;
-        }
-    }
+    this.sortOptions = {
+        none:  0,
+        ascending: 1,
+        descending: 2
+    };
 
     this.add = function (key, value) {
         if (typeof (value) != 'undefined') {
-            if (typeof (!store.hasOwnProperty(key))) {
+            if (typeof (!this.contains(key))) {
                 length++;
                 store[key] = value;
             }
@@ -24,16 +23,16 @@ SAF.Dictionary = function () {
     };
 
     this.merge = function (dictionary) {
-        var keys = dictionary.keys();
+        var keys = dictionary.keys(this.sortOptions.none);
 
         for (var i = 0; i < keys.length; i++) {
             var value = dictionary.find(keys[i]);
             this.add(keys[i], value);
         }
-    }
+    };
 
     this.remove = function (key) {
-        if (typeof (store.hasOwnProperty(key))) {
+        if (typeof (this.contains(key))) {
             length--;
             delete store[key];
         }
@@ -42,7 +41,7 @@ SAF.Dictionary = function () {
     };
 
     this.find = function (key) {
-        return (store.hasOwnProperty(key)) ? store[key] : null;
+        return (this.contains(key)) ? store[key] : null;
     };
 
     this.contains = function (key) {
@@ -51,7 +50,7 @@ SAF.Dictionary = function () {
 
     this.clear = function () {
         for (var key in store) {
-            if (store.hasOwnProperty(key)) {
+            if (this.contains(key)) {
                 length--;
                 delete store[key];
             }
@@ -62,27 +61,17 @@ SAF.Dictionary = function () {
         return length;
     };
 
-    this.keys = function () {
+    this.keys = function (sortOption) {
         var array = [];
 
         for (var key in store) {
             array.push(key);
         }
 
-        return array;
-    };
+        if (sortOption != this.sortOptions.none) {
+            array.sort();
 
-    this.sortedKeys = function (reversed) {
-        var array = [];
-
-        for (var key in store) {
-            array.push(key);
-        }
-
-        array.sort();
-
-        if (typeof reversed === "boolean") {
-            if (reversed) {
+            if (sortOption == this.sortOptions.descending) {
                 array.reverse();
             }
         }

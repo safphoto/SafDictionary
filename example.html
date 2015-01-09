@@ -29,7 +29,7 @@
             d.merge(d2);
             WriteToViewer("Dictionary contents after merging two dictionaries", d.toString());
 
-            var sortedKeys = d.sortedKeys(true); // pass true will cause a reversed sort order
+            var sortedKeys = d.keys(d.sortOptions.descending); // pass true will cause a reversed sort order
 
             WriteToViewer("Sorted keys", sortedKeys);
 
