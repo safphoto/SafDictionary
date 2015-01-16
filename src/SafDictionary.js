@@ -1,8 +1,8 @@
-'use strict';
-
 var SAF = SAF || {};
 
 SAF.Dictionary = function () {
+    'use strict';
+
     var store = {};
     var length = 0;
 
@@ -13,7 +13,7 @@ SAF.Dictionary = function () {
     };
 
     this.add = function (key, value) {
-        if (typeof (value) != 'undefined') {
+        if (typeof value !== 'undefined') {
             if (typeof (!store.hasOwnProperty(key))) {
                 length++;
                 store[key] = value;
@@ -33,7 +33,7 @@ SAF.Dictionary = function () {
     };
 
     this.remove = function (key) {
-        if (typeof (store.hasOwnProperty(key))) {
+        if (typeof store.hasOwnProperty(key)) {
             length--;
             delete store[key];
         }
@@ -66,13 +66,15 @@ SAF.Dictionary = function () {
         var array = [];
 
         for (var key in store) {
-            array.push(key);
+            if (store.hasOwnProperty(key)) {
+                array.push(key);
+            }
         }
 
-        if (sortOption != this.sortOptions.none) {
+        if (sortOption !== this.sortOptions.none) {
             array.sort();
 
-            if (sortOption == this.sortOptions.descending) {
+            if (sortOption === this.sortOptions.descending) {
                 array.reverse();
             }
         }
