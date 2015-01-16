@@ -6,12 +6,22 @@ SAF.Dictionary = function () {
     var store = {};
     var length = 0;
 
+    /**
+     *
+     * @type {{none: number, ascending: number, descending: number}}
+     */
     this.sortOptions = {
         none:  0,
         ascending: 1,
         descending: 2
     };
 
+    /**
+     *
+     * @param key
+     * @param value
+     * @returns {SAF.Dictionary}
+     */
     this.add = function (key, value) {
         if (typeof value !== 'undefined') {
             if (typeof (!store.hasOwnProperty(key))) {
@@ -23,6 +33,10 @@ SAF.Dictionary = function () {
         return this;
     };
 
+    /**
+     *
+     * @param dictionary
+     */
     this.merge = function (dictionary) {
         var keys = dictionary.keys(this.sortOptions.none);
 
@@ -32,6 +46,11 @@ SAF.Dictionary = function () {
         }
     };
 
+    /**
+     *
+     * @param key
+     * @returns {SAF.Dictionary}
+     */
     this.remove = function (key) {
         if (typeof store.hasOwnProperty(key)) {
             length--;
@@ -41,14 +60,27 @@ SAF.Dictionary = function () {
         return this;
     };
 
+    /**
+     *
+     * @param key
+     * @returns {*}
+     */
     this.find = function (key) {
         return (store.hasOwnProperty(key)) ? store[key] : null;
     };
 
+    /**
+     *
+     * @param key
+     * @returns {boolean}
+     */
     this.contains = function (key) {
         return store.hasOwnProperty(key);
     };
 
+    /**
+     *
+     */
     this.clear = function () {
         for (var key in store) {
             if (store.hasOwnProperty(key)) {
@@ -58,10 +90,19 @@ SAF.Dictionary = function () {
         }
     };
 
+    /**
+     *
+     * @returns {number}
+     */
     this.count = function () {
         return length;
     };
 
+    /**
+     *
+     * @param sortOption
+     * @returns {Array}
+     */
     this.keys = function (sortOption) {
         var array = [];
 
@@ -82,6 +123,10 @@ SAF.Dictionary = function () {
         return array;
     };
 
+    /**
+     *
+     * @returns {*}
+     */
     this.toString = function () {
         return JSON.stringify(store);
     };
