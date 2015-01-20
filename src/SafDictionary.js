@@ -7,6 +7,7 @@ SAF.Dictionary = function () {
     var length = 0;
 
     /**
+     * Options for controlling the sort direction
      *
      * @type {{none: number, ascending: number, descending: number}}
      */
@@ -17,6 +18,7 @@ SAF.Dictionary = function () {
     };
 
     /**
+     * Add an item to the collection
      *
      * @param key
      * @param value
@@ -34,6 +36,7 @@ SAF.Dictionary = function () {
     };
 
     /**
+     * Merge two dictionary objects
      *
      * @param dictionary
      */
@@ -47,6 +50,7 @@ SAF.Dictionary = function () {
     };
 
     /**
+     * Remove an item from the collection based on its key
      *
      * @param key
      * @returns {SAF.Dictionary}
@@ -61,6 +65,7 @@ SAF.Dictionary = function () {
     };
 
     /**
+     * Find an item in the collection based on its key
      *
      * @param key
      * @returns {*}
@@ -70,6 +75,7 @@ SAF.Dictionary = function () {
     };
 
     /**
+     * Determine whether the collection has the specified key
      *
      * @param key
      * @returns {boolean}
@@ -79,7 +85,7 @@ SAF.Dictionary = function () {
     };
 
     /**
-     *
+     * Clear all items form the collection
      */
     this.clear = function () {
         for (var key in store) {
@@ -91,6 +97,7 @@ SAF.Dictionary = function () {
     };
 
     /**
+     * Returns he number of items in the collection
      *
      * @returns {number}
      */
@@ -99,6 +106,7 @@ SAF.Dictionary = function () {
     };
 
     /**
+     * Returns a list of keys . . . sorted if specified
      *
      * @param sortOption
      * @returns {Array}
@@ -124,7 +132,7 @@ SAF.Dictionary = function () {
     };
 
     /**
-     *
+     * Serializes the collection
      * @returns {*}
      */
     this.toString = function () {
