@@ -8,7 +8,6 @@ SAF.Dictionary = function () {
 
     /**
      * Options for controlling the sort direction
-     *
      * @type {{none: number, ascending: number, descending: number}}
      */
     this.sortOptions = {
@@ -19,7 +18,6 @@ SAF.Dictionary = function () {
 
     /**
      * Add an item to the collection
-     *
      * @param key
      * @param value
      * @returns {SAF.Dictionary}
@@ -37,7 +35,6 @@ SAF.Dictionary = function () {
 
     /**
      * Merge two dictionary objects
-     *
      * @param dictionary
      */
     this.merge = function (dictionary) {
@@ -51,7 +48,6 @@ SAF.Dictionary = function () {
 
     /**
      * Remove an item from the collection based on its key
-     *
      * @param key
      * @returns {SAF.Dictionary}
      */
@@ -66,7 +62,6 @@ SAF.Dictionary = function () {
 
     /**
      * Find an item in the collection based on its key
-     *
      * @param key
      * @returns {*}
      */
@@ -76,7 +71,6 @@ SAF.Dictionary = function () {
 
     /**
      * Determine whether the collection has the specified key
-     *
      * @param key
      * @returns {boolean}
      */
@@ -98,7 +92,6 @@ SAF.Dictionary = function () {
 
     /**
      * Returns he number of items in the collection
-     *
      * @returns {number}
      */
     this.count = function () {
@@ -107,7 +100,6 @@ SAF.Dictionary = function () {
 
     /**
      * Returns a list of keys . . . sorted if specified
-     *
      * @param sortOption
      * @returns {Array}
      */
