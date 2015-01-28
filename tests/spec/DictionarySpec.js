@@ -65,8 +65,8 @@ describe("Dictionary", function() {
 
   describe("When serializing the dictionary", function() {
     it("should output valid JSON", function() {
-      var keys = d.keys(d.sortOptions.none);
-      expect(d.toString()).toEqual('{"Scott":49,"Corey":45,"Cindy":43,"Shawn":53,"Steve":51,"Willie":57}');
+      var result = d.toString();
+      expect(result).toEqual('{"Scott":49,"Corey":45,"Cindy":43,"Shawn":53,"Steve":51,"Willie":57}');
     });
   });
 
@@ -91,6 +91,25 @@ describe("Dictionary", function() {
     it("should return null if not found", function() {
       var result = d.find('Jerry');
       expect(result).toBeNull();
+    });
+  });
+
+  describe("When merging two dictionaries", function() {
+    d1 = new SAF.Dictionary();
+    d1.add("Scott", 49);
+    d1.add("Corey", 45);
+    d1.add("Cindy", 43);
+    d1.add("Shawn", 53);
+
+    d2 = new SAF.Dictionary();
+    d2.add("Steve", 51);
+    d2.add("Willie", 57);
+
+    d1.merge(d2);
+
+    it("should append the second dictionary to the first", function() {
+      var result = d1.toString();
+      expect(result).toEqual('{"Scott":49,"Corey":45,"Cindy":43,"Shawn":53,"Steve":51,"Willie":57}');
     });
   });
 
