@@ -37,17 +37,23 @@ describe("Dictionary", function() {
     });
 
     describe("When clearing a dictionary", function() {
-        var d = new SAF.Dictionary();
+        var d1 = new SAF.Dictionary()
+            .add("Scott", 49)
+            .add("Corey", 45)
+            .add("Cindy", 43)
+            .add("Shawn", 53);
 
-        d.clear();
-        var newCount = d.count();
+        var newCount = 0;
+
+        d1.clear();
+        newCount = d1.count();
 
         it("should result in a count of 0", function() {
             expect(newCount).toEqual(0);
         });
 
         it("should not result in a null object ref", function() {
-            expect(d).not.toBeNull();
+            expect(d1).not.toBeNull();
         });
     });
 
