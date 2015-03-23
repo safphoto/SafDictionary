@@ -24,7 +24,7 @@ SAF.Dictionary = function () {
      */
     this.add = function (key, value) {
         if (typeof value !== 'undefined') {
-            if (typeof (!store.hasOwnProperty(key))) {
+            if (!store.hasOwnProperty(key)) {
                 length++;
                 store[key] = value;
             }
@@ -52,7 +52,7 @@ SAF.Dictionary = function () {
      * @returns {SAF.Dictionary}
      */
     this.remove = function (key) {
-        if (typeof store.hasOwnProperty(key)) {
+        if (store.hasOwnProperty(key)) {
             length--;
             delete store[key];
         }
